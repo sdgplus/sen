@@ -1,0 +1,43 @@
+name: "SDG-SEN"
+exclude: ["survey imagery", "data"]
+navbar:
+  title: "SDGs for Senegal"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Indicators"
+      icon: ion-stats-bars
+      href: data.html
+      menu:
+        - text: "1. No Poverty"
+        - text: "..."
+        - text: "---------"
+        - text: "14. Life in the Sea"
+        - text: "14.4.1 Fish stocks within sustainable levels"
+          href: "14.4.1_fisheries.html"
+        - text: "14.5.1 Protected marine areas"
+          href: "14.5.1_mpas.html"
+        - text: "---------"
+        - text: "15. Life on Land"
+        - text: "..."
+        - text: "---------"
+  right:
+#    - icon: fa-newspaper-o
+#      href: news.html
+#    - icon: fa-info
+#      href: about.html
+    - icon: ion-help
+      href: notes.html
+    - icon: ion-email
+      href: contact.html
+output_dir: "docs"
+output:
+  html_document:
+    theme: cosmo
+    code_folding: hide  
+    toc: true
+    toc_float: true
+    number_sections: false
+    highlight: textmate
+    css: styles.css
+include: [".nojekyll"]

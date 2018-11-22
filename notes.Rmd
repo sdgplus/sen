@@ -1,0 +1,235 @@
+---
+title: "Notes"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval=F)
+```
+
+## TODO
+
+Show:
+
+1. fork
+1. edit
+1. publish
+
+- Sitemap
+  - Goals & Targets
+  - Indicators
+  - Thematic Explorations
+  - Resources
+- Metadata with source
+
+## Resources
+
+- [**sdg**.data.gov](https://sdg.data.gov) for USA
+  * [code](https://github.com/GSA/sdg-indicators)
+  * [badges](https://sdg.data.gov/statistics)
+  * [**14** Life Below Water](https://sdg.data.gov/life-below-water)
+    - [**14.4.1** Proportion of fish stocks within biologically sustainable levels](https://sdg.data.gov/14-4-1/)
+    - [**14.5.1** Coverage of protected areas in relation to marine areas](https://sdg.data.gov/14-5-1/)
+- [GBR](https://onsdigital.github.io/sdg-indicators) with [code](https://github.com/ONSdigital/sdg-indicators)
+  
+- [Goal 14: Life below Water - SDG Tracker](https://sdg-tracker.org/oceans)
+- [Goal 14 .:. Sustainable Development Knowledge Platform](https://sustainabledevelopment.un.org/sdg14)
+- [SDG 14 Indicators – SDG resources – Medium](https://medium.com/sdgs-resources/sdg-14-indicators-8893bd69f065)
+- [SDG 14 Indicators- 2017 Updates – SDG resources – Medium](https://medium.com/sdgs-resources/sdg-14-indicators-2017-updates-9a35cb9dd0c0)
+- [SDG 14 Targets, Context and Indicators | Ocean Action Hub](https://www.oceanactionhub.org/sdg-14-targets-context-and-indicators)
+- [SDG 14: Conserve and sustainably use the oceans, seas and marine resources for sustainable development – SDG Compass](https://sdgcompass.org/sdgs/sdg-14/)
+- [Metadata for Goal 14, 2016.pdf | UN Stats](https://unstats.un.org/sdgs/files/metadata-compilation/Metadata-Goal-14.pdf)
+
+sdgatlas2018:
+- [Atlas of the Sustainable Development Goals 2018: From the World Development Indicators | Data Catalog](https://datacatalog.worldbank.org/dataset/atlas-sustainable-development-goals-2018-world-development-indicators)
+- [/inputs/sdg14 at master · worldbank/sdgatlas2018](https://github.com/worldbank/sdgatlas2018/tree/master/inputs/sdg14): data references
+- [sdgatlas2018/sdg14.R at master · worldbank/sdgatlas2018](https://github.com/worldbank/sdgatlas2018/blob/master/sdg14.R)
+
+* [worldbank/dkanr: General purpose R client to the DKAN Open Data platform](https://github.com/worldbank/dkanr)
+* [DKAN Open Data Platform](https://getdkan.org/)
+
+[UN Stats Open SDG Data Hub](https://unstats-undesa.opendata.arcgis.com/)  
+- http://esri.github.io/sdg-dash
+- https://github.com/Esri/sdg-api
+  
+https://unstats.un.org/sdgs
+- https://unstats.un.org/sdgs/report/2018/
+- https://unstats.un.org/sdgs/files/report/2018/TheSustainableDevelopmentGoalsReport2018-EN.pdf
+- [UNSD SDGs API](https://unstats.un.org/SDGAPI/swagger/)
+  - [SDG/SDG API Example.ipynb · UNStats/SDG](https://github.com/UNStats/SDG/blob/master/notebooks/SDG%20API%20Example.ipynb)
+
+- [Using Data.gov APIs in R](https://data.library.virginia.edu/using-data-gov-apis-in-r/)
+- [Global Forest Watch API Reference](http://wri.github.io/gfw-api-docs/)
+
+## Fisheries
+
+### `seaaroundus`
+
+- [ropensci/seaaroundus: Access Sea Around Us catch data and view it as dataframes or stacked area charts](https://github.com/ropensci/seaaroundus)
+
+#### Available parameters
+
+Regions:
+
+* eez
+* lme
+* rfmo
+* eez-bordering
+* taxon
+
+Measures:
+
+* tonnage
+* value
+
+Dimensions:
+
+* taxon (not available for taxon region)
+* commercialgroup
+* functionalgroup
+* country (fishing country)
+* sector
+* catchtype
+* reporting-status
+* eez (only available for eez-bordering and taxon regions)
+* highseas (only available for taxon region)
+
+`Plan National Adaptation Principal Vers 3 du 16 10 2016.pdf`
+- https://translate.google.com/?tr=f&hl=en
+
+> As a result, the **Senegalese fishery** (maritime and continental), which annually provides more than 400 000 tonnes of fish products, plays an extremely important social and economic role through job creation (about 630,000), food security (75% of protein animal consumption), reducing the trade balance deficit (1 export position national level for a value of 193.5 billion F CFA in 2015)... fishing, sites that are economically very dynamic today, such as Louis, Cayar, Mbour, Joal-Fadiouth, Djifere and Kafountine
+
+> The **recovery of fish stocks** (50 to 80% reduction in the quantities of fish that existed during the 1960s)
+
+> The fight against **unregulated illegal fishing** not regulated to reduce the losses of the Senegal of more than 145 billion a year and allow the construction each year of 1,450 schools or field hospitals at 100 million CFA per unit
+
+> **landings from foreign EEZs** are between 35% and 40% of landings in Senegal
+
+>  the Government of Senegal has taken the strong option of developing **aquaculture** to close the fish deficit and reduce the pressure on over-exploited stocks... Currently aquaculture is still in its infancy and has produced only 1 215 tonnes in 2015... production has increased 11.35 times between 2010 and 2015
+
+> **Climate change** has become a reality in Senegal that we live daily in coastal erosion... vertical migration of **sardinella** from Morocco to Golf Guinea.
+
+> In twenty years (**horizon 2035**) if the adaptation measures are correctly applied, fishing will continue to provide annually, at least the same amounts in total (230 000 000 000 FCFA x 20 years = 4 600 000 000 FCFA) 4 600 billion FCFA of 2015.
+
+[Sea Around Us | Fisheries, Ecosystems and Biodiversity](http://www.seaaroundus.org/data/#/eez/686?chart=catch-chart&dimension=taxon&measure=tonnage&limit=10)
+
+Q's:
+- SEN inside country or also outside? eg http://www.seaaroundus.org/data/#/spatial-catch?entities=157
+- look at other countries fishing inside SEN
+
+
+- [Stock status in the waters of Senegal | Sea Around Us](http://www.seaaroundus.org/data/#/eez/686/stock-status)
+
+Stock status plots assess the status of stocks by catch biomass (3-year running average values; top) and by number of stocks (bottom) since 1950. Stock-status categories are defined using the following criteria (all referring to the maximum catch [peak catch] or post-peak minimum in each series): 
+
+- **Developing** (catches ≤ 50% of peak and year is pre-peak, or year of peak is final year of the time series);
+- **Exploited** (catches ≥ 50% of peak catches); Over-exploited (catches between 50% and 10% of peak and year is post-peak); 
+- **Collapsed** (catches < 10% of peak and year is post-peak); and 
+- **Rebuilding** (catches between 10% and 50% of peak and year is after post-peak minimum). Note that (n), the number of ‘stocks’ is defined as a time series of a given species, genus or family (higher and pooled groups have been excluded) for which the first and last reported landings are at least 10 years apart, for which there are at least 5 years of consecutive catches and for which the catch in a given area is at least 1000 tonnes.
+
+**TODO**: assign categories using `catchdata("eez", eez_id, measure="tonnage", dimension="taxon")`
+
+FishBase lists for Senegal:
+
+* [Marine Fishes](http://www.fishbase.org/Country/CountryChecklist.php?c_code=686&vhabitat=saltwater&csub_code=)
+* [Reef-associated Fishes](http://www.fishbase.org/Country/CountryChecklist.php?c_code=686&vhabitat=reef&csub_code=)
+* [Deep-water Fishes](http://www.fishbase.org/Country/CountryChecklist.php?c_code=686&vhabitat=deepwater&csub_code=)
+* [Threatened Fishes](http://www.fishbase.org/Country/CountryChecklist.php?c_code=686&vhabitat=threatened&csub_code=)
+
+- [Fisheries Subsidies in Senegal | Sea Around Us](http://www.seaaroundus.org/data/#/subsidy/183)
+
+
+- [FIRMS - Fishery Fact Sheet - Senegal Fisheries sector](http://firms.fao.org/firms/fishery/472/en)
+
+Literature:
+
+- Belhabib et al (2014) [Fisheries catch misreporting and its implications: The case of Senegal - ScienceDirect](https://www.sciencedirect.com/science/article/pii/S0165783613003007). _Fisheries Research_
+- [Overfished: In Senegal, empty nets lead to hunger and violence | -RI](https://gpinvestigations.pri.org/overfished-in-senegal-empty-nets-lead-to-hunger-and-v-olence-e3b5d0c9a686)
+- [Collaborative Management for a Sustainable Fisheries Future in Senegal | -LOBALWATERS.ORG](https://www.globalwaters.org/HowWeWork/Activities/collaborative-managemen--sustainable-fisheries-future-senegal)
+- [USAID/COMFISH and USAID/COMFISH PLUS: Collaborative Management for a Sustainable -isheries Future in Senegal | Coastal Resources -enter](https://www.crc.uri.edu/projects_page/senegalcomfish/)
+- [Projects : West Africa Regional Fisheries Program | The World -ank](http://projects.worldbank.org/P106063/west-africa-regional-fisheries-program?lang=en)
+- [Senegal Takes Steps to Establish a Sustainable and Better-Governed Fisheries -ector](http://www.worldbank.org/en/news/feature/2016/08/08/senegal-takes-steps-to-establish-a-sustainable-and-better-governed-fisheries-sector)
+
+
+## OHI
+
+[Senegal : Ocean Health Index](http://www.oceanhealthindex.org/region-scores/scores/senegal)
+
+- [Food Provision - OHIGoals](http://ohi-science.org/goals/#food-provision)
+
+## HDI
+
+[Senegal - Human Development Indicators - UNDP](http://hdr.undp.org/en/countries/profiles/SEN)
+
+## WDPA API
+
+Protected Planet:
+
+- [API documentation](https://api.protectedplanet.net/documentation)
+- [Calculating protected area coverage](https://www.protectedplanet.net/c/calculating-protected-area-coverage)
+- [country = Senegal, designation = Marine Protected Area](https://www.protectedplanet.net/search?country=Senegal&designation=Marine+Protected+Area&q=Senegal)
+
+- https://github.com/ropenscilabs/rwdpa
+
+
+## UN Stats
+```{r}
+library(jsonlite)
+library(ggplot2)
+
+data  <- fromJSON("https://unstats.un.org/SDGAPI/v1/sdg/Series/Data?seriesCode=SI_POV_DAY1&areaCode=32&pageSize=28")
+series <- as.character(data$data$seriesDescription)
+area <- as.character(data$data$geoAreaName)
+```
+
+## `rwdpa`
+
+https://github.com/ropenscilabs/rwdpa
+
+```{r}
+devtools::install_github("ropenscilabs/rwdpa")
+library("rwdpa")
+
+d <- wdpa_fetch(id = 76200, type = "csv")
+```
+
+## WDPA API
+
+```{r}
+library(tidyverse)
+library(glue)
+library(here)
+
+wdpa_token <- "fe599f3b1eb867493674667d75e8dd6a"
+glue("http://api.protectedplanet.net/test/?token={wdpa_token}")
+
+glue("http://api.protectedplanet.net//v3/countries/?token={wdpa_token}")
+
+```
+
+
+## `seaaroundus`
+
+```{r}
+# get_fisheries <- function(country, measure="value", dimension="sector"){
+#   # defaults: measure="value" in 2010 USD, dimension="sector"
+#   #    see seaaroundus::catchdata & 
+#   #        http://www.seaaroundus.org/data/#/eez/686?chart=catch-chart&dimension=taxon&measure=value
+#   eez_id <- listregions('eez') %>% 
+#   filter(title == country) %>% 
+#   pull("id")
+#   # d <- catchdata("eez", eez_id, measure="value", dimension="reporting-status")
+#   # d <- catchdata("eez", eez_id, measure="tonnage", dimension="sector")
+#   # d <- catchdata("eez", eez_id, measure="value", dimension="sector") %>% 
+#   # catch_status_name     =   Discards | Landings
+#   # taxon (tonnage): set custom MSY
+#   # commercialgroup (value): major group to sum and show
+#   # country (value): ie foreigners; get out foreign
+#   # reporting-status (value): Unreported | Reported
+#   d <- catchdata("eez", eez_id, measure=measure, dimension=dimension)
+# }
+# catch_status_name     =   Discards | Landings
+# reporting_status_name = Unreported | Reported
+# show fishing down food webs (trophic index) over time
+#head(marinetrophicindex("eez", eez_id))
+
+```

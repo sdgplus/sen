@@ -1,0 +1,188 @@
+---
+title: "14.4.1 Fish stocks within sustainable levels"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, message = F, warning = F)
+```
+
+```{r libraries}
+# set 3-letter country code
+cty <- "SEN"
+source("setup.R")
+```
+
+## Map of EEZ
+
+```{r map of eez}
+eez <- get_eez(cty)
+map_eez(eez)
+```
+
+## Fishing by Taxon
+
+```{r}
+# lookup eez id
+eez_id <- get_fishing_eez_id(cty)
+
+# get catch data by taxon (only first 10 species for now)
+d_taxon <- catchdata("eez", eez_id, measure="value", dimension="taxon", limit = 10) %>% 
+  gather(taxon, usd2010, -years)
+
+# show table by taxon
+datatable(d_taxon)
+```
+
+## Fishing by Sector
+
+```{r}
+d_sector <- catchdata("eez", eez_id, measure="value", dimension="sector") %>% 
+  gather(sector, usd2010, -years)
+
+datatable(d_sector)
+```
+
+### Plot
+
+```{r}
+g <- ggplot(d_sector, aes(x = years, y = usd2010/1000000, fill = sector)) +
+  geom_area() +
+  scale_y_continuous(label=comma, name="Value (Millions USD, 2010)")
+ggplotly(g)
+```
+
+## Fishing by Total Value
+
+```{r}
+d_value <- d_sector %>% 
+  group_by(years) %>% 
+  summarize(usd2010 = sum(usd2010))
+
+g <- ggplot(d_value, aes(x = years, y = usd2010/1000000)) +
+  geom_line() +
+  scale_y_continuous(label=comma, name="Value (Millions USD, 2010)")
+ggplotly(g)
+```
+
+## Map of Fishing, Native
+
+```{r}
+d_cells <- get_fishing_cells(2014, cty)
+country <- get_country(cty)
+map_fishing_cells(d_cells, fishing_entity_name == country)
+```
+
+## Map of Fishing, Foreign
+
+```{r}
+map_fishing_cells(d_cells, fishing_entity_name != country)
+```
+
+## Fishing by Country
+
+```{r}
+d_country <- catchdata("eez", eez_id, measure="value", dimension="country") %>% 
+  gather(country, usd2010, -years)
+
+datatable(d_country)
+```
+
+## Fishing by Native, Foreign
+
+```{r}
+d_origin <- bind_rows(
+  d_country %>% 
+    filter(country == tolower(!!country)) %>% 
+    mutate(
+      origin = "Native"),
+  d_country %>% 
+    filter(country != tolower(!!country)) %>% 
+    mutate(
+      origin = "Foreign")) %>% 
+  group_by(years, origin) %>% 
+  summarize(
+    usd2010 = sum(usd2010))
+
+g <- ggplot(d_origin, aes(x = years, y = usd2010/1000000, color = origin)) +
+  geom_line() +
+  scale_y_continuous(label=comma, name="Value (Millions USD, 2010)")
+ggplotly(g)
+```
+
+## Fishing by % Foreign
+
+```{r}
+d_foreign <- d_origin %>% 
+  spread(origin, usd2010) %>% 
+  mutate(
+    pct_foreign = Foreign / (Native + Foreign) * 100)
+
+g <- ggplot(d_foreign, aes(x = years, y = pct_foreign)) +
+  geom_line() +
+  scale_y_continuous(label=comma, name="% Foreign Value")
+ggplotly(g)
+```
+
+## Fishing by % Unreported
+
+```{r}
+d_reporting <- catchdata("eez", eez_id, measure="value", dimension="reporting-status") %>%
+  mutate(
+    pct_unreported = unreported / (reported + unreported) * 100)
+
+g <- ggplot(d_reporting, aes(x = years, y = pct_unreported)) +
+  geom_line() +
+  scale_y_continuous(label=comma, name="% Unreported Value")
+ggplotly(g)
+```
+
+## Fishing by Score
+
+```{r}
+# choose references
+msy <- d_value %>% 
+  filter(years == 2000) %>% 
+  pull(usd2010)
+
+# assign weights
+w <- c(pct_foreign=1, pct_unreported=1, pct_msy=3)
+
+# function to get weighted mean
+f <- function(x, y, z, w){
+  weighted.mean(c(x, y, z), w)
+}
+
+# combine previous tables
+d_score <- d_value %>% 
+  inner_join(
+    d_foreign %>% 
+      select(years, pct_foreign),
+    by = "years") %>% 
+  inner_join(
+    d_reporting %>% 
+      select(years, pct_unreported),
+    by = "years") %>% 
+  mutate(
+    dif_msy = abs(msy - usd2010),
+    pct_msy = rescale(dif_msy) * 100,
+    pct_avg = pmap_dbl(list(pct_foreign, pct_unreported, pct_msy), f, w),
+    score = 100 - pct_avg)
+
+# write to csv
+scores_csv <- glue("data/scores_{cty}_14.4.1_fisheries.csv")
+write_csv(d_score, here(scores_csv))
+
+# plot
+g <- d_score %>% 
+  select(years, pct_foreign, pct_unreported, pct_msy, score) %>% 
+  gather(metric, percent, -years) %>% 
+  mutate(
+    line_width = if_else(metric == "score", 2, 1)) %>% 
+  ggplot(aes(x = years, y = percent, color = metric)) +
+  geom_line(aes(size = line_width)) +
+  scale_y_continuous(label=comma, name="Score") +
+  scale_size_continuous(range = c( 0.5, 1.5) ) 
+ggplotly(g)
+```
+
+Download: [`r scores_csv`](`raw_url`/`r scores_csv`)

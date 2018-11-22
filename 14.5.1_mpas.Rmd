@@ -1,0 +1,92 @@
+---
+title: "14.5.1 Protected marine areas"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, message = F, warning = F)
+```
+
+```{r libraries}
+# set 3-letter country code
+cty <- "SEN"
+source("setup.R")
+```
+
+## Protected Areas from WDPA
+
+Source: [ProtectedPlanet.net](https://www.protectedplanet.net)
+
+```{r}
+eez <- get_eez(cty)
+
+# TODO: use API https://api.protectedplanet.net/documentation once issued token working
+shp <- "data/wdpa_SEN/WDPA_Nov2018_search_cba488aa728738021c0392fed80e2aa4b1988f2df100259ef181699dd569dade-shapefile-polygons.shp"
+mpa <- read_sf(shp) %>% 
+  st_cast() %>% 
+  st_make_valid()
+  
+leaflet() %>%
+  addProviderTiles(providers$Esri.OceanBasemap) %>% 
+  addPolygons(data = eez) %>% 
+  addPolygons(
+    data = mpa, 
+    fillColor="green", color="green",
+    label = ~ NAME, 
+    popup = ~ glue("NAME: <b>{NAME}<b><br>DESIG_TYPE: {DESIG_TYPE}<br>NO_TAKE: {NO_TAKE}<br>STATUS_YR: {STATUS_YR}"))
+```
+
+## Cumulative Area
+
+Reference: 20% of EEZ
+
+```{r}
+eez_km2 <- eez %>% 
+    mutate(
+      area_km2 = st_area(geometry) %>% 
+        units::drop_units() / (1000*1000)) %>% 
+    pull(area_km2)
+
+# calculate area for MPAs with year
+d_mpa <- mpa %>% 
+  mutate(
+    name     = NAME,
+    year     = STATUS_YR,
+    area_km2 = st_area(geometry) %>% 
+      units::drop_units() / (1000*1000)) %>% 
+  select(name, year, area_km2) %>% 
+  st_set_geometry(NULL) %>% 
+  group_by(year) %>% 
+  summarize(
+    area_km2 = sum(area_km2)) %>% 
+  mutate(
+    eez_km2  = !!eez_km2,
+    cum_km2  = cumsum(area_km2),
+    cum_pct  = cum_km2/eez_km2 * 100)
+
+# add begin / end years
+d_mpa <- d_mpa %>% 
+  bind_rows(
+    tibble(
+      year    = c(1990, now() %>% year()),
+      cum_pct = c(   0, max(d_mpa$cum_pct)))) %>% 
+  arrange(year)
+
+# reference
+pct_goal <- 20
+
+# score
+d_mpa <- d_mpa %>% 
+  mutate(
+    score = cum_pct / pct_goal * 100)
+datatable(d_mpa)
+
+scores_csv <- glue("data/scores_{cty}_14.5.1_mpas.csv")
+write_csv(d_mpa, scores_csv)
+
+g <- ggplot(d_mpa, aes(x = year, y = score)) +
+  geom_line() +
+  scale_y_continuous(label=comma, name="% Protected wrt 20% goal")
+ggplotly(g)
+```
+
+Download: [`r scores_csv`](`raw_url`/`r scores_csv`)

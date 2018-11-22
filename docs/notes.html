@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Notes</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">SDGs for Senegal</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="ion ion-stats-bars"></span>
+     
+    Indicators
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">1. No Poverty</li>
+    <li class="dropdown-header">...</li>
+    <li class="divider"></li>
+    <li class="dropdown-header">14. Life in the Sea</li>
+    <li>
+      <a href="14.4.1_fisheries.html">14.4.1 Fish stocks within sustainable levels</a>
+    </li>
+    <li>
+      <a href="14.5.1_mpas.html">14.5.1 Protected marine areas</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">15. Life on Land</li>
+    <li class="dropdown-header">...</li>
+    <li class="divider"></li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="notes.html">
+    <span class="ion ion-help"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="contact.html">
+    <span class="ion ion-email"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Notes</h1>
+
+</div>
+
+
+<div id="todo" class="section level2">
+<h2>TODO</h2>
+<p>Show:</p>
+<ol style="list-style-type: decimal">
+<li>fork</li>
+<li>edit</li>
+<li>publish</li>
+</ol>
+<ul>
+<li>Sitemap
+<ul>
+<li>Goals &amp; Targets</li>
+<li>Indicators</li>
+<li>Thematic Explorations</li>
+<li>Resources</li>
+</ul></li>
+<li>Metadata with source</li>
+</ul>
+</div>
+<div id="resources" class="section level2">
+<h2>Resources</h2>
+<ul>
+<li><a href="https://sdg.data.gov"><strong>sdg</strong>.data.gov</a> for USA
+<ul>
+<li><a href="https://github.com/GSA/sdg-indicators">code</a></li>
+<li><a href="https://sdg.data.gov/statistics">badges</a></li>
+<li><a href="https://sdg.data.gov/life-below-water"><strong>14</strong> Life Below Water</a>
+<ul>
+<li><a href="https://sdg.data.gov/14-4-1/"><strong>14.4.1</strong> Proportion of fish stocks within biologically sustainable levels</a></li>
+<li><a href="https://sdg.data.gov/14-5-1/"><strong>14.5.1</strong> Coverage of protected areas in relation to marine areas</a></li>
+</ul></li>
+</ul></li>
+<li><p><a href="https://onsdigital.github.io/sdg-indicators">GBR</a> with <a href="https://github.com/ONSdigital/sdg-indicators">code</a></p></li>
+<li><a href="https://sdg-tracker.org/oceans">Goal 14: Life below Water - SDG Tracker</a></li>
+<li><a href="https://sustainabledevelopment.un.org/sdg14">Goal 14 .:. Sustainable Development Knowledge Platform</a></li>
+<li><a href="https://medium.com/sdgs-resources/sdg-14-indicators-8893bd69f065">SDG 14 Indicators – SDG resources – Medium</a></li>
+<li><a href="https://medium.com/sdgs-resources/sdg-14-indicators-2017-updates-9a35cb9dd0c0">SDG 14 Indicators- 2017 Updates – SDG resources – Medium</a></li>
+<li><a href="https://www.oceanactionhub.org/sdg-14-targets-context-and-indicators">SDG 14 Targets, Context and Indicators | Ocean Action Hub</a></li>
+<li><a href="https://sdgcompass.org/sdgs/sdg-14/">SDG 14: Conserve and sustainably use the oceans, seas and marine resources for sustainable development – SDG Compass</a></li>
+<li><p><a href="https://unstats.un.org/sdgs/files/metadata-compilation/Metadata-Goal-14.pdf">Metadata for Goal 14, 2016.pdf | UN Stats</a></p></li>
+</ul>
+<p>sdgatlas2018: - <a href="https://datacatalog.worldbank.org/dataset/atlas-sustainable-development-goals-2018-world-development-indicators">Atlas of the Sustainable Development Goals 2018: From the World Development Indicators | Data Catalog</a> - <a href="https://github.com/worldbank/sdgatlas2018/tree/master/inputs/sdg14">/inputs/sdg14 at master · worldbank/sdgatlas2018</a>: data references - <a href="https://github.com/worldbank/sdgatlas2018/blob/master/sdg14.R">sdgatlas2018/sdg14.R at master · worldbank/sdgatlas2018</a></p>
+<ul>
+<li><a href="https://github.com/worldbank/dkanr">worldbank/dkanr: General purpose R client to the DKAN Open Data platform</a></li>
+<li><a href="https://getdkan.org/">DKAN Open Data Platform</a></li>
+</ul>
+<p><a href="https://unstats-undesa.opendata.arcgis.com/">UN Stats Open SDG Data Hub</a><br />
+- <a href="http://esri.github.io/sdg-dash" class="uri">http://esri.github.io/sdg-dash</a> - <a href="https://github.com/Esri/sdg-api" class="uri">https://github.com/Esri/sdg-api</a></p>
+<p><a href="https://unstats.un.org/sdgs" class="uri">https://unstats.un.org/sdgs</a> - <a href="https://unstats.un.org/sdgs/report/2018/" class="uri">https://unstats.un.org/sdgs/report/2018/</a> - <a href="https://unstats.un.org/sdgs/files/report/2018/TheSustainableDevelopmentGoalsReport2018-EN.pdf" class="uri">https://unstats.un.org/sdgs/files/report/2018/TheSustainableDevelopmentGoalsReport2018-EN.pdf</a> - <a href="https://unstats.un.org/SDGAPI/swagger/">UNSD SDGs API</a> - <a href="https://github.com/UNStats/SDG/blob/master/notebooks/SDG%20API%20Example.ipynb">SDG/SDG API Example.ipynb · UNStats/SDG</a></p>
+<ul>
+<li><a href="https://data.library.virginia.edu/using-data-gov-apis-in-r/">Using Data.gov APIs in R</a></li>
+<li><a href="http://wri.github.io/gfw-api-docs/">Global Forest Watch API Reference</a></li>
+</ul>
+</div>
+<div id="fisheries" class="section level2">
+<h2>Fisheries</h2>
+<div id="seaaroundus" class="section level3">
+<h3><code>seaaroundus</code></h3>
+<ul>
+<li><a href="https://github.com/ropensci/seaaroundus">ropensci/seaaroundus: Access Sea Around Us catch data and view it as dataframes or stacked area charts</a></li>
+</ul>
+<div id="available-parameters" class="section level4">
+<h4>Available parameters</h4>
+<p>Regions:</p>
+<ul>
+<li>eez</li>
+<li>lme</li>
+<li>rfmo</li>
+<li>eez-bordering</li>
+<li>taxon</li>
+</ul>
+<p>Measures:</p>
+<ul>
+<li>tonnage</li>
+<li>value</li>
+</ul>
+<p>Dimensions:</p>
+<ul>
+<li>taxon (not available for taxon region)</li>
+<li>commercialgroup</li>
+<li>functionalgroup</li>
+<li>country (fishing country)</li>
+<li>sector</li>
+<li>catchtype</li>
+<li>reporting-status</li>
+<li>eez (only available for eez-bordering and taxon regions)</li>
+<li>highseas (only available for taxon region)</li>
+</ul>
+<p><code>Plan National Adaptation Principal Vers 3 du 16 10 2016.pdf</code> - <a href="https://translate.google.com/?tr=f&amp;hl=en" class="uri">https://translate.google.com/?tr=f&amp;hl=en</a></p>
+<blockquote>
+<p>As a result, the <strong>Senegalese fishery</strong> (maritime and continental), which annually provides more than 400 000 tonnes of fish products, plays an extremely important social and economic role through job creation (about 630,000), food security (75% of protein animal consumption), reducing the trade balance deficit (1 export position national level for a value of 193.5 billion F CFA in 2015)… fishing, sites that are economically very dynamic today, such as Louis, Cayar, Mbour, Joal-Fadiouth, Djifere and Kafountine</p>
+</blockquote>
+<blockquote>
+<p>The <strong>recovery of fish stocks</strong> (50 to 80% reduction in the quantities of fish that existed during the 1960s)</p>
+</blockquote>
+<blockquote>
+<p>The fight against <strong>unregulated illegal fishing</strong> not regulated to reduce the losses of the Senegal of more than 145 billion a year and allow the construction each year of 1,450 schools or field hospitals at 100 million CFA per unit</p>
+</blockquote>
+<blockquote>
+<p><strong>landings from foreign EEZs</strong> are between 35% and 40% of landings in Senegal</p>
+</blockquote>
+<blockquote>
+<p>the Government of Senegal has taken the strong option of developing <strong>aquaculture</strong> to close the fish deficit and reduce the pressure on over-exploited stocks… Currently aquaculture is still in its infancy and has produced only 1 215 tonnes in 2015… production has increased 11.35 times between 2010 and 2015</p>
+</blockquote>
+<blockquote>
+<p><strong>Climate change</strong> has become a reality in Senegal that we live daily in coastal erosion… vertical migration of <strong>sardinella</strong> from Morocco to Golf Guinea.</p>
+</blockquote>
+<blockquote>
+<p>In twenty years (<strong>horizon 2035</strong>) if the adaptation measures are correctly applied, fishing will continue to provide annually, at least the same amounts in total (230 000 000 000 FCFA x 20 years = 4 600 000 000 FCFA) 4 600 billion FCFA of 2015.</p>
+</blockquote>
+<p><a href="http://www.seaaroundus.org/data/#/eez/686?chart=catch-chart&amp;dimension=taxon&amp;measure=tonnage&amp;limit=10">Sea Around Us | Fisheries, Ecosystems and Biodiversity</a></p>
+<p>Q’s: - SEN inside country or also outside? eg <a href="http://www.seaaroundus.org/data/#/spatial-catch?entities=157" class="uri">http://www.seaaroundus.org/data/#/spatial-catch?entities=157</a> - look at other countries fishing inside SEN</p>
+<ul>
+<li><a href="http://www.seaaroundus.org/data/#/eez/686/stock-status">Stock status in the waters of Senegal | Sea Around Us</a></li>
+</ul>
+<p>Stock status plots assess the status of stocks by catch biomass (3-year running average values; top) and by number of stocks (bottom) since 1950. Stock-status categories are defined using the following criteria (all referring to the maximum catch [peak catch] or post-peak minimum in each series):</p>
+<ul>
+<li><strong>Developing</strong> (catches ≤ 50% of peak and year is pre-peak, or year of peak is final year of the time series);</li>
+<li><strong>Exploited</strong> (catches ≥ 50% of peak catches); Over-exploited (catches between 50% and 10% of peak and year is post-peak);</li>
+<li><strong>Collapsed</strong> (catches &lt; 10% of peak and year is post-peak); and</li>
+<li><strong>Rebuilding</strong> (catches between 10% and 50% of peak and year is after post-peak minimum). Note that (n), the number of ‘stocks’ is defined as a time series of a given species, genus or family (higher and pooled groups have been excluded) for which the first and last reported landings are at least 10 years apart, for which there are at least 5 years of consecutive catches and for which the catch in a given area is at least 1000 tonnes.</li>
+</ul>
+<p><strong>TODO</strong>: assign categories using <code>catchdata(&quot;eez&quot;, eez_id, measure=&quot;tonnage&quot;, dimension=&quot;taxon&quot;)</code></p>
+<p>FishBase lists for Senegal:</p>
+<ul>
+<li><a href="http://www.fishbase.org/Country/CountryChecklist.php?c_code=686&amp;vhabitat=saltwater&amp;csub_code=">Marine Fishes</a></li>
+<li><a href="http://www.fishbase.org/Country/CountryChecklist.php?c_code=686&amp;vhabitat=reef&amp;csub_code=">Reef-associated Fishes</a></li>
+<li><a href="http://www.fishbase.org/Country/CountryChecklist.php?c_code=686&amp;vhabitat=deepwater&amp;csub_code=">Deep-water Fishes</a></li>
+<li><p><a href="http://www.fishbase.org/Country/CountryChecklist.php?c_code=686&amp;vhabitat=threatened&amp;csub_code=">Threatened Fishes</a></p></li>
+<li><p><a href="http://www.seaaroundus.org/data/#/subsidy/183">Fisheries Subsidies in Senegal | Sea Around Us</a></p></li>
+<li><p><a href="http://firms.fao.org/firms/fishery/472/en">FIRMS - Fishery Fact Sheet - Senegal Fisheries sector</a></p></li>
+</ul>
+<p>Literature:</p>
+<ul>
+<li>Belhabib et al (2014) <a href="https://www.sciencedirect.com/science/article/pii/S0165783613003007">Fisheries catch misreporting and its implications: The case of Senegal - ScienceDirect</a>. <em>Fisheries Research</em></li>
+<li><a href="https://gpinvestigations.pri.org/overfished-in-senegal-empty-nets-lead-to-hunger-and-v-olence-e3b5d0c9a686">Overfished: In Senegal, empty nets lead to hunger and violence | -RI</a></li>
+<li><a href="https://www.globalwaters.org/HowWeWork/Activities/collaborative-managemen--sustainable-fisheries-future-senegal">Collaborative Management for a Sustainable Fisheries Future in Senegal | -LOBALWATERS.ORG</a></li>
+<li><a href="https://www.crc.uri.edu/projects_page/senegalcomfish/">USAID/COMFISH and USAID/COMFISH PLUS: Collaborative Management for a Sustainable -isheries Future in Senegal | Coastal Resources -enter</a></li>
+<li><a href="http://projects.worldbank.org/P106063/west-africa-regional-fisheries-program?lang=en">Projects : West Africa Regional Fisheries Program | The World -ank</a></li>
+<li><a href="http://www.worldbank.org/en/news/feature/2016/08/08/senegal-takes-steps-to-establish-a-sustainable-and-better-governed-fisheries-sector">Senegal Takes Steps to Establish a Sustainable and Better-Governed Fisheries -ector</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="ohi" class="section level2">
+<h2>OHI</h2>
+<p><a href="http://www.oceanhealthindex.org/region-scores/scores/senegal">Senegal : Ocean Health Index</a></p>
+<ul>
+<li><a href="http://ohi-science.org/goals/#food-provision">Food Provision - OHIGoals</a></li>
+</ul>
+</div>
+<div id="hdi" class="section level2">
+<h2>HDI</h2>
+<p><a href="http://hdr.undp.org/en/countries/profiles/SEN">Senegal - Human Development Indicators - UNDP</a></p>
+</div>
+<div id="wdpa-api" class="section level2">
+<h2>WDPA API</h2>
+<p>Protected Planet:</p>
+<ul>
+<li><a href="https://api.protectedplanet.net/documentation">API documentation</a></li>
+<li><a href="https://www.protectedplanet.net/c/calculating-protected-area-coverage">Calculating protected area coverage</a></li>
+<li><p><a href="https://www.protectedplanet.net/search?country=Senegal&amp;designation=Marine+Protected+Area&amp;q=Senegal">country = Senegal, designation = Marine Protected Area</a></p></li>
+<li><p><a href="https://github.com/ropenscilabs/rwdpa" class="uri">https://github.com/ropenscilabs/rwdpa</a></p></li>
+</ul>
+</div>
+<div id="un-stats" class="section level2">
+<h2>UN Stats</h2>
+<pre class="r"><code>library(jsonlite)
+library(ggplot2)
+
+data  &lt;- fromJSON(&quot;https://unstats.un.org/SDGAPI/v1/sdg/Series/Data?seriesCode=SI_POV_DAY1&amp;areaCode=32&amp;pageSize=28&quot;)
+series &lt;- as.character(data$data$seriesDescription)
+area &lt;- as.character(data$data$geoAreaName)</code></pre>
+</div>
+<div id="rwdpa" class="section level2">
+<h2><code>rwdpa</code></h2>
+<p><a href="https://github.com/ropenscilabs/rwdpa" class="uri">https://github.com/ropenscilabs/rwdpa</a></p>
+<pre class="r"><code>devtools::install_github(&quot;ropenscilabs/rwdpa&quot;)
+library(&quot;rwdpa&quot;)
+
+d &lt;- wdpa_fetch(id = 76200, type = &quot;csv&quot;)</code></pre>
+</div>
+<div id="wdpa-api-1" class="section level2">
+<h2>WDPA API</h2>
+<pre class="r"><code>library(tidyverse)
+library(glue)
+library(here)
+
+wdpa_token &lt;- &quot;fe599f3b1eb867493674667d75e8dd6a&quot;
+glue(&quot;http://api.protectedplanet.net/test/?token={wdpa_token}&quot;)
+
+glue(&quot;http://api.protectedplanet.net//v3/countries/?token={wdpa_token}&quot;)</code></pre>
+</div>
+<div id="seaaroundus-1" class="section level2">
+<h2><code>seaaroundus</code></h2>
+<pre class="r"><code># get_fisheries &lt;- function(country, measure=&quot;value&quot;, dimension=&quot;sector&quot;){
+#   # defaults: measure=&quot;value&quot; in 2010 USD, dimension=&quot;sector&quot;
+#   #    see seaaroundus::catchdata &amp; 
+#   #        http://www.seaaroundus.org/data/#/eez/686?chart=catch-chart&amp;dimension=taxon&amp;measure=value
+#   eez_id &lt;- listregions(&#39;eez&#39;) %&gt;% 
+#   filter(title == country) %&gt;% 
+#   pull(&quot;id&quot;)
+#   # d &lt;- catchdata(&quot;eez&quot;, eez_id, measure=&quot;value&quot;, dimension=&quot;reporting-status&quot;)
+#   # d &lt;- catchdata(&quot;eez&quot;, eez_id, measure=&quot;tonnage&quot;, dimension=&quot;sector&quot;)
+#   # d &lt;- catchdata(&quot;eez&quot;, eez_id, measure=&quot;value&quot;, dimension=&quot;sector&quot;) %&gt;% 
+#   # catch_status_name     =   Discards | Landings
+#   # taxon (tonnage): set custom MSY
+#   # commercialgroup (value): major group to sum and show
+#   # country (value): ie foreigners; get out foreign
+#   # reporting-status (value): Unreported | Reported
+#   d &lt;- catchdata(&quot;eez&quot;, eez_id, measure=measure, dimension=dimension)
+# }
+# catch_status_name     =   Discards | Landings
+# reporting_status_name = Unreported | Reported
+# show fishing down food webs (trophic index) over time
+#head(marinetrophicindex(&quot;eez&quot;, eez_id))</code></pre>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
