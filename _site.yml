@@ -28,8 +28,8 @@ navbar:
 #      href: about.html
     - icon: ion-help
       href: notes.html
-    - icon: ion-email
-      href: contact.html
+#    - icon: ion-email
+#      href: <ben@ecoquants.com>
 output_dir: "docs"
 output:
   html_document:

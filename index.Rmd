@@ -6,7 +6,10 @@ title: "Welcome!"
 knitr::opts_chunk$set(echo = F, message = F, warning = F)
 ```
 
-## Background
+_**Purpose**_. This little demonstration is meant to show how global datasets can be consumed and combined with local data to custom build and distribute sustainable development (SDG) indicators transparently, particularly for **SDG 14. Life in the Sea**.
 
+The underlying code should only need to have the 3-letter country code (ie `"SEN"`) changed to be re-run for another country.
 
+Please visit the **Indicators** menu to see the examples.
 
+For questions/comments/suggestions, please contact Ben Best (<ben@ecoquants.com>).
