@@ -1,5 +1,8 @@
 ---
 title: "14.5.1 Protected marine areas"
+output:
+  html_document:
+    code_folding: hide  
 ---
 
 ```{r setup, include=FALSE}

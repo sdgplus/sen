@@ -3,6 +3,8 @@ title: "Welcome!"
 output:
   html_document:
     toc_float: false
+    toc: false
+    number_sections: false
 ---
 
 ```{r setup, include=FALSE}
