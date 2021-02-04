@@ -1,8 +1,12 @@
 ---
-title: "14.5.1 Protected marine areas"
+title: "`r params$cty` - 14.5.1 Protected marine areas"
 output:
   html_document:
     code_folding: hide  
+params:
+  cty: SEN
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -11,8 +15,13 @@ knitr::opts_chunk$set(echo = T, message = F, warning = F)
 
 ```{r libraries}
 # set 3-letter country code
-cty <- "SEN"
+# cty <- "SEN"
+# now set as Rmarkdown parameter
+# params <- list(cty = "BRA")
+cty <- params$cty
 source("setup.R")
+
+raw_url <- glue("https://raw.githubusercontent.com/sdgplus/{tolower(cty)}/master")
 ```
 
 ## Protected Areas from WDPA

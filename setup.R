@@ -1,23 +1,27 @@
 # load libraries ----
-library(tidyverse)
-library(here)
-library(glue)
-library(rmapshaper)
-library(geojsonio)
-library(lwgeom)
-library(sf)
-library(mregions) # install.packages("mregions")
-library(leaflet)
-library(seaaroundus) # install.packages("seaaroundus")
-library(raster)
-library(scales)
-library(DT)
-library(plotly)
-library(lubridate)
-here <- here::here
+if (!require(librarian)){
+  install.packages("librarian")
+  library(librarian)
+}
+shelf(
+  DT, geojsonio, glue, here, leaflet, lubridate, lwgeom, mregions, 
+  plotly, raster, rmapshaper, scales, sf, stringr, tidyverse)
+here   <- here::here
 select <- dplyr::select
 
-raw_url <- glue("https://raw.githubusercontent.com/sdgplus/{tolower(cty)}/master")
+# Sea Around Us Project (SAUP) manual install
+if (!require(seaaroundus)){
+  url_saup <- "https://cran.r-project.org/src/contrib/Archive/seaaroundus/seaaroundus_1.2.0.tar.gz"
+  saup_gz <- here(glue("software/{basename(url_saup)}"))
+  
+  if (!file.exists(saup_gz)){
+    download.file(url_saup, saup_gz)  
+  }
+  install.packages(saup_gz, repos = NULL, type="source")
+
+  library(seaaroundus)
+}
+
 
 # custom functions ----
 # TODO: move these functions into dedicated sdgtools R package with documentation
@@ -36,12 +40,14 @@ get_country <- function(cty){
     filter(FIFA == cty) %>% 
     pull(official_name_en)
 }
-get_eez <- function(cty, geojson = here(glue("data/eez_{cty}.geojson"))){
+get_eez <- function(cty, geojson = here(glue("data/{cty}_eez.geojson"))){
+  # cty = "BRA"; geojson = here(glue("data/eez_{cty}.geojson")
   
   if (!file.exists(geojson)){
     
     country <- get_country(cty)
     
+    mr_eezs <- mr_names("MarineRegions:eez")
     eez_ids <- mr_names_search(mr_eezs, country) %>% pull(id)
     eez_list <- lapply(eez_ids, function(id) 
       mr_features_get('MarineRegions:eez', id, format='json') %>% 
@@ -65,22 +71,42 @@ map_eez <- function(eez){
   leaflet() %>%
     addProviderTiles(providers$Esri.OceanBasemap) %>% 
     addPolygons(data = eez)}
+
 get_fishing_eez_id <- function(cty){
   country <- get_country(cty)
-  listregions('eez') %>% 
-    filter(title == !!country) %>% 
+  saup_eez_matches <- listregions('eez') %>% 
+    filter(str_detect(title, glue(".*{country}.*"))) %>% 
+    arrange(id)
+  
+  if (saup_eez_matches == 0){
+    msg <- glue("The country {country} (cty=='{cty})' did not match any SAUP regions in get_fishing_eez_id().")
+    stop(msg)
+  }
+  
+  saup_eez_match1 <- saup_eez_matches %>% 
+    slice(1)
+  
+  if (nrow(saup_eez_matches) > 1){
+    msg <- glue("The country {country} (cty=='{cty})' matched more than 1 SAUP region in get_fishing_eez_id(). 
+                Choosing first one: '{saup_eez_match1$title}' ({saup_eez_match1$id}) 
+                  of all: {paste(saup_eez_matches$title, collapse = ', ')}")
+    warning(msg)
+  }
+  
+  saup_eez_match1 %>% 
     pull("id")
 }
-get_fishing_cells <- function(year, cty){
-  # year = 2014; cty = "SEN"
+
+get_fishing_cells <- function(cty){
+  # year = 2014; cty = "BRA"
   
   eez <- get_eez(cty) %>% 
+    st_union() %>% 
     ms_simplify()
-  wkt <- st_as_text(eez$geometry)
-  cells <- getcells(wkt)
-  getcelldata(year, cells) %>% 
-    as_tibble()
+  wkt <- st_as_text(eez)
+  getcells(wkt)
 }
+
 get_fishing_empty_grid <- function(){
   # raster specifications for 0.5 degree global raster
   raster(

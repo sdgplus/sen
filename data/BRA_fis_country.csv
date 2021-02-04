@@ -1,0 +1,738 @@
+years,country,usd2010
+1950,brazil,958514749.817
+1951,brazil,1062496042.167
+1952,brazil,1283459432.252
+1953,brazil,933281194.411
+1954,brazil,1236035049.559
+1955,brazil,1389276196.341
+1956,brazil,1814278508.893
+1957,brazil,1598998497.021
+1958,brazil,1507148953.484
+1959,brazil,2916376467.563
+1960,brazil,2718801361.511
+1961,brazil,3644079812.922
+1962,brazil,7527443367.402
+1963,brazil,10568506107.219
+1964,brazil,8733919545.566
+1965,brazil,10737988033.114
+1966,brazil,14519347966.448
+1967,brazil,13005521692.134
+1968,brazil,14285398110.598
+1969,brazil,16906705999.703
+1970,brazil,18752651954.27
+1971,brazil,26504772036.038
+1972,brazil,43872598711.755
+1973,brazil,42623297537.516
+1974,brazil,28925560441.19
+1975,brazil,36990538636.756
+1976,brazil,16384084579.901
+1977,brazil,31467126604.817
+1978,brazil,44594793363.904
+1979,brazil,68266364195.636
+1980,brazil,53963122912.306
+1981,brazil,42156923039.993
+1982,brazil,39926353483.352
+1983,brazil,69395168535.83
+1984,brazil,69172891697.158
+1985,brazil,59066742088.107
+1986,brazil,72184941577.36
+1987,brazil,77763498155.081
+1988,brazil,35953874394.836
+1989,brazil,30464709704.753
+1990,brazil,8007655539.176
+1991,brazil,10615768324.648
+1992,brazil,10648323912.856
+1993,brazil,9672456625.81
+1994,brazil,13880014280.456
+1995,brazil,9670444526.703
+1996,brazil,13706469314.989
+1997,brazil,18748057823.583
+1998,brazil,11891615861.119
+1999,brazil,6120309090.797
+2000,brazil,7808090506.81
+2001,brazil,9802333139.03
+2002,brazil,9320075761.502
+2003,brazil,8805335107.645
+2004,brazil,10517491434.668
+2005,brazil,9443749830.672
+2006,brazil,11660220225.043
+2007,brazil,12661300941.189
+2008,brazil,14614940412.511
+2009,brazil,20929751532.811
+2010,brazil,17934255096.337
+2011,brazil,18898749446.131
+2012,brazil,19268192606.37
+2013,brazil,19699369076.539
+2014,brazil,13727612366.24
+2015,brazil,10167763178.609
+2016,brazil,10517085041.091
+1950,china,0
+1951,china,0
+1952,china,0
+1953,china,0
+1954,china,0
+1955,china,0
+1956,china,0
+1957,china,0
+1958,china,0
+1959,china,0
+1960,china,0
+1961,china,0
+1962,china,0
+1963,china,0
+1964,china,0
+1965,china,0
+1966,china,0
+1967,china,0
+1968,china,0
+1969,china,0
+1970,china,0
+1971,china,0
+1972,china,0
+1973,china,0
+1974,china,0
+1975,china,0
+1976,china,0
+1977,china,0
+1978,china,0
+1979,china,0
+1980,china,0
+1981,china,0
+1982,china,0
+1983,china,0
+1984,china,0
+1985,china,0
+1986,china,0
+1987,china,0
+1988,china,0
+1989,china,0
+1990,china,0
+1991,china,0
+1992,china,0
+1993,china,0
+1994,china,0
+1995,china,0
+1996,china,0
+1997,china,0
+1998,china,0
+1999,china,0
+2000,china,0
+2001,china,0
+2002,china,6691.786
+2003,china,0
+2004,china,0
+2005,china,0
+2006,china,0
+2007,china,0
+2008,china,0
+2009,china,0
+2010,china,0
+2011,china,0
+2012,china,0
+2013,china,3041762534.674
+2014,china,0
+2015,china,57504974231.54
+2016,china,0
+1950,spain,0
+1951,spain,0
+1952,spain,0
+1953,spain,0
+1954,spain,0
+1955,spain,0
+1956,spain,0
+1957,spain,0
+1958,spain,0
+1959,spain,0
+1960,spain,0
+1961,spain,0
+1962,spain,0
+1963,spain,0
+1964,spain,0
+1965,spain,0
+1966,spain,0
+1967,spain,0
+1968,spain,0
+1969,spain,0
+1970,spain,0
+1971,spain,0
+1972,spain,0
+1973,spain,0
+1974,spain,0
+1975,spain,0
+1976,spain,0
+1977,spain,0
+1978,spain,0
+1979,spain,0
+1980,spain,0
+1981,spain,0
+1982,spain,0
+1983,spain,0
+1984,spain,0
+1985,spain,0
+1986,spain,0
+1987,spain,0
+1988,spain,0
+1989,spain,0
+1990,spain,0
+1991,spain,0
+1992,spain,0
+1993,spain,0
+1994,spain,0
+1995,spain,0
+1996,spain,125.475
+1997,spain,0
+1998,spain,11.38
+1999,spain,6.048
+2000,spain,0
+2001,spain,0
+2002,spain,0
+2003,spain,0
+2004,spain,0
+2005,spain,0
+2006,spain,0
+2007,spain,0
+2008,spain,0
+2009,spain,0
+2010,spain,0
+2011,spain,0
+2012,spain,566012686.008
+2013,spain,17758558570.026
+2014,spain,25036142951.064
+2015,spain,146255132.184
+2016,spain,10642688.207
+1950,japan,0
+1951,japan,0
+1952,japan,0
+1953,japan,0
+1954,japan,0
+1955,japan,0
+1956,japan,4164570.073
+1957,japan,456997259.406
+1958,japan,3410525156.608
+1959,japan,411402591.778
+1960,japan,7492610039.404
+1961,japan,487710152.2
+1962,japan,0
+1963,japan,0
+1964,japan,0
+1965,japan,0
+1966,japan,0
+1967,japan,0
+1968,japan,53406.495
+1969,japan,655906.81
+1970,japan,859267.671
+1971,japan,36071.403
+1972,japan,79040.935
+1973,japan,365.533
+1974,japan,0
+1975,japan,0
+1976,japan,0
+1977,japan,0
+1978,japan,3086.947
+1979,japan,0
+1980,japan,0
+1981,japan,0
+1982,japan,0
+1983,japan,0
+1984,japan,0
+1985,japan,0
+1986,japan,0
+1987,japan,0
+1988,japan,0
+1989,japan,0
+1990,japan,0
+1991,japan,0
+1992,japan,80.932
+1993,japan,0
+1994,japan,0
+1995,japan,0
+1996,japan,0
+1997,japan,0
+1998,japan,0
+1999,japan,0
+2000,japan,0
+2001,japan,0
+2002,japan,0
+2003,japan,0
+2004,japan,0
+2005,japan,0
+2006,japan,0
+2007,japan,0
+2008,japan,0
+2009,japan,0
+2010,japan,0
+2011,japan,0
+2012,japan,17271137.207
+2013,japan,10386627.618
+2014,japan,8888993.625
+2015,japan,0
+2016,japan,10555539.667
+1950,russian federation,0
+1951,russian federation,0
+1952,russian federation,0
+1953,russian federation,0
+1954,russian federation,0
+1955,russian federation,0
+1956,russian federation,0
+1957,russian federation,0
+1958,russian federation,0
+1959,russian federation,0
+1960,russian federation,0
+1961,russian federation,0
+1962,russian federation,0
+1963,russian federation,1080740.365
+1964,russian federation,8300114.418
+1965,russian federation,4263198.048
+1966,russian federation,196959536.85
+1967,russian federation,7384482501.004
+1968,russian federation,1498566347.872
+1969,russian federation,175507690.731
+1970,russian federation,0
+1971,russian federation,0
+1972,russian federation,0
+1973,russian federation,0
+1974,russian federation,0
+1975,russian federation,0
+1976,russian federation,0
+1977,russian federation,0
+1978,russian federation,0
+1979,russian federation,0
+1980,russian federation,0
+1981,russian federation,0
+1982,russian federation,0
+1983,russian federation,0
+1984,russian federation,0
+1985,russian federation,0
+1986,russian federation,0
+1987,russian federation,0
+1988,russian federation,0
+1989,russian federation,0
+1990,russian federation,0
+1991,russian federation,0
+1992,russian federation,0
+1993,russian federation,0
+1994,russian federation,0
+1995,russian federation,0
+1996,russian federation,0
+1997,russian federation,0
+1998,russian federation,0
+1999,russian federation,0
+2000,russian federation,0
+2001,russian federation,0
+2002,russian federation,0
+2003,russian federation,0
+2004,russian federation,0
+2005,russian federation,0
+2006,russian federation,0
+2007,russian federation,0
+2008,russian federation,0
+2009,russian federation,0
+2010,russian federation,0
+2011,russian federation,0
+2012,russian federation,0
+2013,russian federation,0
+2014,russian federation,0
+2015,russian federation,0
+2016,russian federation,0
+1950,ukraine,0
+1951,ukraine,0
+1952,ukraine,0
+1953,ukraine,0
+1954,ukraine,0
+1955,ukraine,0
+1956,ukraine,0
+1957,ukraine,0
+1958,ukraine,0
+1959,ukraine,0
+1960,ukraine,0
+1961,ukraine,0
+1962,ukraine,0
+1963,ukraine,0
+1964,ukraine,4543217.625
+1965,ukraine,4084.532
+1966,ukraine,57212135.982
+1967,ukraine,5911386245.721
+1968,ukraine,602785409.281
+1969,ukraine,53413029.848
+1970,ukraine,0
+1971,ukraine,0
+1972,ukraine,0
+1973,ukraine,0
+1974,ukraine,0
+1975,ukraine,0
+1976,ukraine,0
+1977,ukraine,0
+1978,ukraine,0
+1979,ukraine,0
+1980,ukraine,0
+1981,ukraine,0
+1982,ukraine,0
+1983,ukraine,0
+1984,ukraine,0
+1985,ukraine,0
+1986,ukraine,0
+1987,ukraine,0
+1988,ukraine,0
+1989,ukraine,0
+1990,ukraine,0
+1991,ukraine,0
+1992,ukraine,0
+1993,ukraine,0
+1994,ukraine,0
+1995,ukraine,0
+1996,ukraine,0
+1997,ukraine,0
+1998,ukraine,0
+1999,ukraine,0
+2000,ukraine,0
+2001,ukraine,0
+2002,ukraine,0
+2003,ukraine,0
+2004,ukraine,0
+2005,ukraine,0
+2006,ukraine,0
+2007,ukraine,0
+2008,ukraine,0
+2009,ukraine,0
+2010,ukraine,0
+2011,ukraine,0
+2012,ukraine,0
+2013,ukraine,0
+2014,ukraine,0
+2015,ukraine,0
+2016,ukraine,0
+1950,lithuania,0
+1951,lithuania,0
+1952,lithuania,0
+1953,lithuania,0
+1954,lithuania,0
+1955,lithuania,0
+1956,lithuania,0
+1957,lithuania,0
+1958,lithuania,0
+1959,lithuania,0
+1960,lithuania,0
+1961,lithuania,0
+1962,lithuania,0
+1963,lithuania,0
+1964,lithuania,40650.683
+1965,lithuania,45.097
+1966,lithuania,8221305.944
+1967,lithuania,1350565550.322
+1968,lithuania,129697555.701
+1969,lithuania,29777192.887
+1970,lithuania,0
+1971,lithuania,0
+1972,lithuania,0
+1973,lithuania,0
+1974,lithuania,0
+1975,lithuania,0
+1976,lithuania,0
+1977,lithuania,0
+1978,lithuania,0
+1979,lithuania,0
+1980,lithuania,0
+1981,lithuania,0
+1982,lithuania,0
+1983,lithuania,0
+1984,lithuania,0
+1985,lithuania,0
+1986,lithuania,0
+1987,lithuania,0
+1988,lithuania,0
+1989,lithuania,0
+1990,lithuania,0
+1991,lithuania,0
+1992,lithuania,0
+1993,lithuania,0
+1994,lithuania,0
+1995,lithuania,0
+1996,lithuania,0
+1997,lithuania,0
+1998,lithuania,0
+1999,lithuania,0
+2000,lithuania,0
+2001,lithuania,0
+2002,lithuania,0
+2003,lithuania,0
+2004,lithuania,0
+2005,lithuania,0
+2006,lithuania,0
+2007,lithuania,0
+2008,lithuania,0
+2009,lithuania,0
+2010,lithuania,0
+2011,lithuania,0
+2012,lithuania,0
+2013,lithuania,0
+2014,lithuania,0
+2015,lithuania,0
+2016,lithuania,0
+1950,korea (south),0
+1951,korea (south),0
+1952,korea (south),0
+1953,korea (south),0
+1954,korea (south),0
+1955,korea (south),0
+1956,korea (south),0
+1957,korea (south),0
+1958,korea (south),0
+1959,korea (south),0
+1960,korea (south),0
+1961,korea (south),0
+1962,korea (south),0
+1963,korea (south),0
+1964,korea (south),11094.225
+1965,korea (south),0
+1966,korea (south),1584003.666
+1967,korea (south),0
+1968,korea (south),2350920.321
+1969,korea (south),13678800.362
+1970,korea (south),0
+1971,korea (south),0
+1972,korea (south),0
+1973,korea (south),0
+1974,korea (south),0
+1975,korea (south),0
+1976,korea (south),165521027.122
+1977,korea (south),342716704.506
+1978,korea (south),137934705.435
+1979,korea (south),82093556.64
+1980,korea (south),15107841.469
+1981,korea (south),25157342.245
+1982,korea (south),115322542.164
+1983,korea (south),392892109.945
+1984,korea (south),0
+1985,korea (south),0
+1986,korea (south),0
+1987,korea (south),0
+1988,korea (south),0
+1989,korea (south),0
+1990,korea (south),0
+1991,korea (south),0
+1992,korea (south),0
+1993,korea (south),0
+1994,korea (south),0
+1995,korea (south),0
+1996,korea (south),0
+1997,korea (south),0
+1998,korea (south),0
+1999,korea (south),0
+2000,korea (south),0
+2001,korea (south),0
+2002,korea (south),0
+2003,korea (south),0
+2004,korea (south),0
+2005,korea (south),0
+2006,korea (south),0
+2007,korea (south),0
+2008,korea (south),0
+2009,korea (south),0
+2010,korea (south),0
+2011,korea (south),0
+2012,korea (south),0
+2013,korea (south),0
+2014,korea (south),0
+2015,korea (south),129025591.04
+2016,korea (south),0
+1950,latvia,0
+1951,latvia,0
+1952,latvia,0
+1953,latvia,0
+1954,latvia,0
+1955,latvia,0
+1956,latvia,0
+1957,latvia,0
+1958,latvia,0
+1959,latvia,0
+1960,latvia,0
+1961,latvia,0
+1962,latvia,0
+1963,latvia,0
+1964,latvia,57885.627
+1965,latvia,50.252
+1966,latvia,7793304.794
+1967,latvia,1106701019.562
+1968,latvia,116608640.467
+1969,latvia,19802318.335
+1970,latvia,0
+1971,latvia,0
+1972,latvia,0
+1973,latvia,0
+1974,latvia,0
+1975,latvia,0
+1976,latvia,0
+1977,latvia,0
+1978,latvia,0
+1979,latvia,0
+1980,latvia,0
+1981,latvia,0
+1982,latvia,0
+1983,latvia,0
+1984,latvia,0
+1985,latvia,0
+1986,latvia,0
+1987,latvia,0
+1988,latvia,0
+1989,latvia,0
+1990,latvia,0
+1991,latvia,0
+1992,latvia,0
+1993,latvia,0
+1994,latvia,0
+1995,latvia,0
+1996,latvia,0
+1997,latvia,0
+1998,latvia,0
+1999,latvia,0
+2000,latvia,0
+2001,latvia,0
+2002,latvia,0
+2003,latvia,0
+2004,latvia,0
+2005,latvia,0
+2006,latvia,0
+2007,latvia,0
+2008,latvia,0
+2009,latvia,0
+2010,latvia,0
+2011,latvia,0
+2012,latvia,0
+2013,latvia,0
+2014,latvia,0
+2015,latvia,0
+2016,latvia,0
+1950,estonia,0
+1951,estonia,0
+1952,estonia,0
+1953,estonia,0
+1954,estonia,0
+1955,estonia,0
+1956,estonia,0
+1957,estonia,0
+1958,estonia,0
+1959,estonia,0
+1960,estonia,0
+1961,estonia,0
+1962,estonia,0
+1963,estonia,0
+1964,estonia,13145.398
+1965,estonia,21.226
+1966,estonia,2301873.008
+1967,estonia,467337679.334
+1968,estonia,33446264.167
+1969,estonia,508077.821
+1970,estonia,0
+1971,estonia,0
+1972,estonia,0
+1973,estonia,0
+1974,estonia,0
+1975,estonia,0
+1976,estonia,0
+1977,estonia,0
+1978,estonia,0
+1979,estonia,0
+1980,estonia,0
+1981,estonia,0
+1982,estonia,0
+1983,estonia,0
+1984,estonia,0
+1985,estonia,0
+1986,estonia,0
+1987,estonia,0
+1988,estonia,0
+1989,estonia,0
+1990,estonia,0
+1991,estonia,0
+1992,estonia,0
+1993,estonia,0
+1994,estonia,0
+1995,estonia,0
+1996,estonia,0
+1997,estonia,0
+1998,estonia,0
+1999,estonia,0
+2000,estonia,0
+2001,estonia,0
+2002,estonia,0
+2003,estonia,0
+2004,estonia,0
+2005,estonia,0
+2006,estonia,0
+2007,estonia,0
+2008,estonia,0
+2009,estonia,0
+2010,estonia,0
+2011,estonia,0
+2012,estonia,0
+2013,estonia,0
+2014,estonia,0
+2015,estonia,0
+2016,estonia,0
+1950,others,1671838.02
+1951,others,1476157.09
+1952,others,1625312.61
+1953,others,741680.87
+1954,others,1399358.89
+1955,others,5242234.81
+1956,others,5453033.26
+1957,others,5610108.24
+1958,others,5849964.08
+1959,others,6620263.01
+1960,others,10295504.71
+1961,others,7539509.19
+1962,others,17474479.74
+1963,others,20111937.04
+1964,others,19735260.24
+1965,others,16601160.68
+1966,others,18339549.88
+1967,others,12599893.46
+1968,others,18363200.89
+1969,others,55013835.44
+1970,others,373564.19
+1971,others,7261866.27
+1972,others,1963009.76
+1973,others,15297121.57
+1974,others,7444707.07
+1975,others,7686916.42
+1976,others,8121871.24
+1977,others,2502939.31
+1978,others,4486221.71
+1979,others,6958253.81
+1980,others,12388856.79
+1981,others,4289903.9
+1982,others,5944365.46
+1983,others,1441399.58
+1984,others,372122.68
+1985,others,118975.65
+1986,others,179225.03
+1987,others,372934.07
+1988,others,1106865.35
+1989,others,1504443.09
+1990,others,493164.3
+1991,others,10329427.03
+1992,others,10799896.63
+1993,others,4805649.32
+1994,others,1200376.51
+1995,others,239060
+1996,others,2032717.03
+1997,others,167184.92
+1998,others,90918.3
+1999,others,170673.49
+2000,others,244895.41
+2001,others,20077.15
+2002,others,1182071.52
+2003,others,171220.62
+2004,others,14905.96
+2005,others,377810.76
+2006,others,367832.88
+2007,others,536752.22
+2008,others,933839.85
+2009,others,797330.3
+2010,others,699139.54
+2011,others,102035.55
+2012,others,38362600.64
+2013,others,23128702.56
+2014,others,19282.94
+2015,others,36474431.48
+2016,others,61134200.64

@@ -1,8 +1,12 @@
 ---
-title: "14.4.1 Fish stocks within sustainable levels"
+title: "`r params$cty` - 14.4.1 Fish stocks within sustainable levels"
 output:
   html_document:
     code_folding: hide  
+params:
+  cty: BRA
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -11,8 +15,19 @@ knitr::opts_chunk$set(echo = T, message = F, warning = F)
 
 ```{r libraries}
 # set 3-letter country code
-cty <- "SEN"
+
+#cty <- "SEN"
+# cty <- "BRA" 
+# now set as Rmarkdown parameter in Rmd frontmatter
+# params <- list(cty = "BRA")
+cty <- params$cty
+
 source("setup.R")
+raw_url <- glue("https://raw.githubusercontent.com/sdgplus/{tolower(cty)}/master")
+
+# read_csv(here("data/country-codes.csv")) %>% 
+#   select(FIFA, official_name_en) %>% 
+#   View()
 ```
 
 ## Map of EEZ
@@ -25,12 +40,22 @@ map_eez(eez)
 ## Fishing by Taxon
 
 ```{r}
+taxon_csv <- here(glue("data/{cty}_fis_taxon.csv"))
+  
 # lookup eez id
 eez_id <- get_fishing_eez_id(cty)
-
+                
 # get catch data by taxon (only first 10 species for now)
-d_taxon <- catchdata("eez", eez_id, measure="value", dimension="taxon", limit = 10) %>% 
+if (!file.exists(taxon_csv)){
+
+  # get taxon data
+  d_taxon <- catchdata("eez", eez_id, measure="value", dimension="taxon", limit = 10) %>% 
   gather(taxon, usd2010, -years)
+  
+  write_csv(d_taxon, taxon_csv)
+} else {
+  d_taxon <- read_csv(taxon_csv)
+}
 
 # show table by taxon
 datatable(d_taxon)
@@ -39,8 +64,16 @@ datatable(d_taxon)
 ## Fishing by Sector
 
 ```{r}
-d_sector <- catchdata("eez", eez_id, measure="value", dimension="sector") %>% 
-  gather(sector, usd2010, -years)
+sector_csv <- here(glue("data/{cty}_fis_sector.csv"))
+                  
+if (!file.exists(sector_csv)){
+  d_sector <- catchdata("eez", eez_id, measure="value", dimension="sector") %>% 
+    gather(sector, usd2010, -years)
+  
+  write_csv(d_sector, sector_csv)
+} else {
+  d_sector <- read_csv(sector_csv)
+}
 
 datatable(d_sector)
 ```
@@ -57,9 +90,17 @@ ggplotly(g)
 ## Fishing by Total Value
 
 ```{r}
-d_value <- d_sector %>% 
-  group_by(years) %>% 
-  summarize(usd2010 = sum(usd2010))
+value_csv <- here(glue("data/{cty}_fis_value.csv"))
+                  
+if (!file.exists(value_csv)){
+  d_value <- d_sector %>% 
+    group_by(years) %>% 
+    summarize(usd2010 = sum(usd2010))
+
+  write_csv(d_value, value_csv)
+} else {
+  d_value <- read_csv(value_csv)
+}
 
 g <- ggplot(d_value, aes(x = years, y = usd2010/1000000)) +
   geom_line() +
@@ -70,22 +111,66 @@ ggplotly(g)
 ## Map of Fishing, Native
 
 ```{r}
-d_cells <- get_fishing_cells(2014, cty)
+yr <- 2014
+
+cells_csv    <- here(glue("data/{cty}_fis_cells.csv"))
+# use gz for smaller size:
+#   BRA csv.gz 11.6 MB vs csv is 110.2 MB, bigger than Github file max of 100 MB
+cells_yr_gz  <- here(glue("data/{cty}_fis_cells_{yr}.csv.gz"))
+
 country <- get_country(cty)
-map_fishing_cells(d_cells, fishing_entity_name == country)
+
+if (!file.exists(cells_csv)){
+  d_cells <- tibble(
+    cellid = get_fishing_cells(cty))
+  write_csv(d_cells, cells_csv)
+} else {
+  d_cells <- read_csv(cells_csv)
+}
+
+if (!file.exists(cells_yr_gz)){
+  d_cells_yr <- getcelldata(yr, d_cells$cellid) %>% 
+    tibble()
+  # head(d_cells_yr)
+  # A tibble: 6 x 18
+  #   reporting_status taxon_key cell_id fishing_entity_… reporting_statu… catch_status_na… sector_type_name
+  #   <chr>                <int>   <int> <chr>            <chr>            <chr>            <chr>           
+  # 1 R                   100039  147886 Brazil           Reported         Landings         Industrial      
+  # 2 R                   100039  124100 Brazil           Reported         Landings         Industrial      
+  # 3 R                   100039  128425 Brazil           Reported         Landings         Industrial      
+  # 4 R                   100039  129866 Brazil           Reported         Landings         Industrial      
+  # 5 R                   100039  162992 Brazil           Reported         Landings         Industrial      
+  # 6 R                   100039  164444 Brazil           Reported         Landings         Industrial      
+  # # … with 11 more variables: fishing_entity_id <int>, year <int>, catch_status <chr>,
+  # #   taxon_common_name <chr>, sector_type_id <int>, taxon_scientific_name <chr>, functional_group_id <int>,
+  # #   commercial_group_name <chr>, commercial_group_id <int>, catch_sum <dbl>, functional_group_name <chr>
+  write_csv(d_cells_yr, cells_yr_gz)
+} else {
+  d_cells_yr <- read_csv(cells_yr_gz)
+}
+
+map_fishing_cells(d_cells_yr, fishing_entity_name == country)
 ```
 
 ## Map of Fishing, Foreign
 
 ```{r}
-map_fishing_cells(d_cells, fishing_entity_name != country)
+map_fishing_cells(d_cells_yr, fishing_entity_name != country)
 ```
 
 ## Fishing by Country
 
 ```{r}
-d_country <- catchdata("eez", eez_id, measure="value", dimension="country") %>% 
-  gather(country, usd2010, -years)
+country_csv <- here(glue("data/{cty}_fis_country.csv"))
+                  
+if (!file.exists(country_csv)){
+  d_country <- catchdata("eez", eez_id, measure="value", dimension="country") %>%
+    gather(country, usd2010, -years)
+
+  write_csv(d_country, country_csv)
+} else {
+  d_country <- read_csv(country_csv)
+}
 
 datatable(d_country)
 ```
@@ -93,18 +178,25 @@ datatable(d_country)
 ## Fishing by Native, Foreign
 
 ```{r}
-d_origin <- bind_rows(
-  d_country %>% 
-    filter(country == tolower(!!country)) %>% 
-    mutate(
-      origin = "Native"),
-  d_country %>% 
-    filter(country != tolower(!!country)) %>% 
-    mutate(
-      origin = "Foreign")) %>% 
-  group_by(years, origin) %>% 
-  summarize(
-    usd2010 = sum(usd2010))
+origin_csv <- here(glue("data/{cty}_fis_origin.csv"))
+                  
+if (!file.exists(origin_csv)){
+  d_origin <- bind_rows(
+    d_country %>% 
+      filter(country == tolower(!!country)) %>% 
+      mutate(
+        origin = "Native"),
+    d_country %>% 
+      filter(country != tolower(!!country)) %>% 
+      mutate(
+        origin = "Foreign")) %>% 
+    group_by(years, origin) %>% 
+    summarize(
+      usd2010 = sum(usd2010))
+  write_csv(d_origin, origin_csv)
+} else {
+  d_origin <- read_csv(origin_csv)
+}
 
 g <- ggplot(d_origin, aes(x = years, y = usd2010/1000000, color = origin)) +
   geom_line() +
@@ -129,9 +221,18 @@ ggplotly(g)
 ## Fishing by % Unreported
 
 ```{r}
-d_reporting <- catchdata("eez", eez_id, measure="value", dimension="reporting-status") %>%
-  mutate(
-    pct_unreported = unreported / (reported + unreported) * 100)
+reporting_csv <- here(glue("data/{cty}_fis_reporting.csv"))
+                  
+if (!file.exists(reporting_csv)){
+  d_reporting <- catchdata(
+    "eez", eez_id, measure="value", dimension="reporting-status") %>%
+    mutate(
+      pct_unreported = unreported / (reported + unreported) * 100)
+  
+  write_csv(d_reporting, reporting_csv)
+} else {
+  d_reporting <- read_csv(reporting_csv)
+}
 
 g <- ggplot(d_reporting, aes(x = years, y = pct_unreported)) +
   geom_line() +
@@ -142,9 +243,12 @@ ggplotly(g)
 ## Fishing by Score
 
 ```{r}
+yr_msy_ref <- 2000
+scores_csv <- glue("data/{cty}_fis_scores.csv")
+
 # choose references
 msy <- d_value %>% 
-  filter(years == 2000) %>% 
+  filter(years == yr_msy_ref) %>% 
   pull(usd2010)
 
 # assign weights
@@ -155,25 +259,27 @@ f <- function(x, y, z, w){
   weighted.mean(c(x, y, z), w)
 }
 
-# combine previous tables
-d_score <- d_value %>% 
-  inner_join(
-    d_foreign %>% 
-      select(years, pct_foreign),
-    by = "years") %>% 
-  inner_join(
-    d_reporting %>% 
-      select(years, pct_unreported),
-    by = "years") %>% 
-  mutate(
-    dif_msy = abs(msy - usd2010),
-    pct_msy = rescale(dif_msy) * 100,
-    pct_avg = pmap_dbl(list(pct_foreign, pct_unreported, pct_msy), f, w),
-    score = 100 - pct_avg)
-
-# write to csv
-scores_csv <- glue("data/scores_{cty}_14.4.1_fisheries.csv")
-write_csv(d_score, here(scores_csv))
+if (!file.exists(scores_csv)){
+  # combine previous tables
+  d_score <- d_value %>% 
+    inner_join(
+      d_foreign %>% 
+        select(years, pct_foreign),
+      by = "years") %>% 
+    inner_join(
+      d_reporting %>% 
+        select(years, pct_unreported),
+      by = "years") %>% 
+    mutate(
+      dif_msy = abs(msy - usd2010),
+      pct_msy = rescale(dif_msy) * 100,
+      pct_avg = pmap_dbl(list(pct_foreign, pct_unreported, pct_msy), f, w),
+      score = 100 - pct_avg)
+  
+  write_csv(d_score, scores_csv)
+} else {
+  d_score <- read_csv(scores_csv)
+}
 
 # plot
 g <- d_score %>% 
