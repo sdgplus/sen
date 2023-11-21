@@ -33,12 +33,24 @@ eez <- get_eez(cty)
 
 # TODO: use API https://api.protectedplanet.net/documentation once issued token working
 shp <- "data/wdpa_SEN/WDPA_Nov2018_search_cba488aa728738021c0392fed80e2aa4b1988f2df100259ef181699dd569dade-shapefile-polygons.shp"
+
 mpa <- read_sf(shp) %>% 
   st_cast() %>% 
   st_make_valid()
   
 leaflet() %>%
-  addProviderTiles(providers$Esri.OceanBasemap) %>% 
+  # add base: blue bathymetry and light brown/green topography
+  addProviderTiles(
+    "Esri.OceanBasemap",
+    options = providerTileOptions(
+      variant = "Ocean/World_Ocean_Base",
+      opacity = basemap_opacity)) |>
+  # add reference: placename labels and borders
+  addProviderTiles(
+    "Esri.OceanBasemap",
+    options = providerTileOptions(
+      variant = "Ocean/World_Ocean_Reference",
+      opacity = basemap_opacity)) |>
   addPolygons(data = eez) %>% 
   addPolygons(
     data = mpa, 

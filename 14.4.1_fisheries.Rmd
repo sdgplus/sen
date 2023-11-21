@@ -4,6 +4,7 @@ output:
   html_document:
     code_folding: hide  
 params:
+  # cty: SEN
   cty: BRA
 editor_options: 
   chunk_output_type: console
@@ -39,6 +40,9 @@ map_eez(eez)
 
 ## Fishing by Taxon
 
+Source: [SeaAroundUs.org](https://www.seaaroundus.org/data/#/spatial-catch)
+
+
 ```{r}
 taxon_csv <- here(glue("data/{cty}_fis_taxon.csv"))
   
@@ -50,7 +54,7 @@ if (!file.exists(taxon_csv)){
 
   # get taxon data
   d_taxon <- catchdata("eez", eez_id, measure="value", dimension="taxon", limit = 10) %>% 
-  gather(taxon, usd2010, -years)
+    gather(taxon, usd2010, -years)
   
   write_csv(d_taxon, taxon_csv)
 } else {

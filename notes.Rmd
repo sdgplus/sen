@@ -6,6 +6,25 @@ title: "Notes"
 knitr::opts_chunk$set(echo = TRUE, eval=F)
 ```
 
+## SEN Adaptation Plan
+
+`Plan National Adaptation Principal Vers 3 du 16 10 2016.pdf`
+- https://translate.google.com/?tr=f&hl=en
+
+> As a result, the **Senegalese fishery** (maritime and continental), which annually provides more than 400 000 tonnes of fish products, plays an extremely important social and economic role through job creation (about 630,000), food security (75% of protein animal consumption), reducing the trade balance deficit (1 export position national level for a value of 193.5 billion F CFA in 2015)... fishing, sites that are economically very dynamic today, such as Louis, Cayar, Mbour, Joal-Fadiouth, Djifere and Kafountine
+
+> The **recovery of fish stocks** (50 to 80% reduction in the quantities of fish that existed during the 1960s)
+
+> The fight against **unregulated illegal fishing** not regulated to reduce the losses of the Senegal of more than 145 billion a year and allow the construction each year of 1,450 schools or field hospitals at 100 million CFA per unit
+
+> **landings from foreign EEZs** are between 35% and 40% of landings in Senegal
+
+>  the Government of Senegal has taken the strong option of developing **aquaculture** to close the fish deficit and reduce the pressure on over-exploited stocks... Currently aquaculture is still in its infancy and has produced only 1 215 tonnes in 2015... production has increased 11.35 times between 2010 and 2015
+
+> **Climate change** has become a reality in Senegal that we live daily in coastal erosion... vertical migration of **sardinella** from Morocco to Golf Guinea.
+
+> In twenty years (**horizon 2035**) if the adaptation measures are correctly applied, fishing will continue to provide annually, at least the same amounts in total (230 000 000 000 FCFA x 20 years = 4 600 000 000 FCFA) 4 600 billion FCFA of 2015.
+
 ## TODO
 
 Show:
@@ -92,23 +111,6 @@ Dimensions:
 * reporting-status
 * eez (only available for eez-bordering and taxon regions)
 * highseas (only available for taxon region)
-
-`Plan National Adaptation Principal Vers 3 du 16 10 2016.pdf`
-- https://translate.google.com/?tr=f&hl=en
-
-> As a result, the **Senegalese fishery** (maritime and continental), which annually provides more than 400 000 tonnes of fish products, plays an extremely important social and economic role through job creation (about 630,000), food security (75% of protein animal consumption), reducing the trade balance deficit (1 export position national level for a value of 193.5 billion F CFA in 2015)... fishing, sites that are economically very dynamic today, such as Louis, Cayar, Mbour, Joal-Fadiouth, Djifere and Kafountine
-
-> The **recovery of fish stocks** (50 to 80% reduction in the quantities of fish that existed during the 1960s)
-
-> The fight against **unregulated illegal fishing** not regulated to reduce the losses of the Senegal of more than 145 billion a year and allow the construction each year of 1,450 schools or field hospitals at 100 million CFA per unit
-
-> **landings from foreign EEZs** are between 35% and 40% of landings in Senegal
-
->  the Government of Senegal has taken the strong option of developing **aquaculture** to close the fish deficit and reduce the pressure on over-exploited stocks... Currently aquaculture is still in its infancy and has produced only 1 215 tonnes in 2015... production has increased 11.35 times between 2010 and 2015
-
-> **Climate change** has become a reality in Senegal that we live daily in coastal erosion... vertical migration of **sardinella** from Morocco to Golf Guinea.
-
-> In twenty years (**horizon 2035**) if the adaptation measures are correctly applied, fishing will continue to provide annually, at least the same amounts in total (230 000 000 000 FCFA x 20 years = 4 600 000 000 FCFA) 4 600 billion FCFA of 2015.
 
 [Sea Around Us | Fisheries, Ecosystems and Biodiversity](http://www.seaaroundus.org/data/#/eez/686?chart=catch-chart&dimension=taxon&measure=tonnage&limit=10)
 

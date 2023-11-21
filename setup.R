@@ -9,8 +9,14 @@ shelf(
 here   <- here::here
 select <- dplyr::select
 
+basemap_opacity <- 0.6
+
 # Sea Around Us Project (SAUP) manual install
 if (!require(seaaroundus)){
+  url_wkt <- "https://cran.r-project.org/src/contrib/Archive/wicket/wicket_0.4.0.tar.gz"
+  wkt_gz <- here(glue("software/{basename(url_wkt)}"))
+  install.packages(wkt_gz, repos = NULL, type="source")
+  
   url_saup <- "https://cran.r-project.org/src/contrib/Archive/seaaroundus/seaaroundus_1.2.0.tar.gz"
   saup_gz <- here(glue("software/{basename(url_saup)}"))
   
@@ -69,7 +75,19 @@ get_eez <- function(cty, geojson = here(glue("data/{cty}_eez.geojson"))){
 }
 map_eez <- function(eez){
   leaflet() %>%
-    addProviderTiles(providers$Esri.OceanBasemap) %>% 
+    leaflet() |>
+    # add base: blue bathymetry and light brown/green topography
+    addProviderTiles(
+      "Esri.OceanBasemap",
+      options = providerTileOptions(
+        variant = "Ocean/World_Ocean_Base",
+        opacity = basemap_opacity)) |>
+    # add reference: placename labels and borders
+    addProviderTiles(
+      "Esri.OceanBasemap",
+      options = providerTileOptions(
+        variant = "Ocean/World_Ocean_Reference",
+        opacity = basemap_opacity)) |> 
     addPolygons(data = eez)}
 
 get_fishing_eez_id <- function(cty){
@@ -78,7 +96,7 @@ get_fishing_eez_id <- function(cty){
     filter(str_detect(title, glue(".*{country}.*"))) %>% 
     arrange(id)
   
-  if (saup_eez_matches == 0){
+  if (nrow(saup_eez_matches) == 0){
     msg <- glue("The country {country} (cty=='{cty})' did not match any SAUP regions in get_fishing_eez_id().")
     stop(msg)
   }
@@ -130,7 +148,19 @@ map_fishing_cells <- function(d_cells, expr) {
   pal <- colorNumeric("Spectral", values(r), na.color = "transparent")
   
   leaflet() %>% 
-    addProviderTiles(providers$Stamen.TonerLite) %>% 
+    # addProviderTiles(providers$Stamen.TonerLite) %>% 
+    # add base: blue bathymetry and light brown/green topography
+    addProviderTiles(
+      "Esri.OceanBasemap",
+      options = providerTileOptions(
+        variant = "Ocean/World_Ocean_Base",
+        opacity = basemap_opacity)) |>
+    # add reference: placename labels and borders
+    addProviderTiles(
+      "Esri.OceanBasemap",
+      options = providerTileOptions(
+        variant = "Ocean/World_Ocean_Reference",
+        opacity = basemap_opacity)) |>
     addRasterImage(r, colors = pal, opacity = 0.7) %>%
     addLegend(pal = pal, values = values(r), title = "Tons")
 }

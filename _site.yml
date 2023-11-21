@@ -1,7 +1,7 @@
-name: "SDG-SEN"
+name: "SDG+"
 exclude: ["survey imagery", "data"]
 navbar:
-  title: "SDGs for Senegal"
+  title: "SDG+"
   left:
     - text: "Home"
       href: index.html
